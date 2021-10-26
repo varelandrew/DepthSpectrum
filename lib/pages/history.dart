@@ -10,6 +10,7 @@ class HistoryPage extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Photo history"),
+          backgroundColor: Colors.red,
         ),
         body: const Center(
           child: Icon(

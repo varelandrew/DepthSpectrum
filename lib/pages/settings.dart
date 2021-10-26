@@ -10,6 +10,7 @@ class SettingsPage extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Settings"),
+          backgroundColor: Colors.red,
         ),
         body: const Center(
           child: Icon(
