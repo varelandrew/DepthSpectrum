@@ -9,6 +9,7 @@ class SettingsPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          leading: const Icon(Icons.settings),
           title: const Text("Settings"),
           backgroundColor: Colors.red,
         ),

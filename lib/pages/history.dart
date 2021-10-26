@@ -9,14 +9,34 @@ class HistoryPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          leading: const Icon(Icons.photo_library),
           title: const Text("Photo history"),
           backgroundColor: Colors.red,
         ),
-        body: const Center(
-          child: Icon(
-            Icons.history,
-            size: 100,
-          ),
+        body: ListView(
+          children: <Widget>[
+            ListTile(
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network("https://i2.kym-cdn.com/photos/images/original/001/023/910/f0c.jpg"),
+              ),
+              title: const Text("Photo 1"),
+            ),
+            ListTile(
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network("https://media-exp1.licdn.com/dms/image/C5603AQEdAojqU6D-Cw/profile-displayphoto-shrink_400_400/0/1631410513596?e=1640822400&v=beta&t=36AkiwTverFPRiBJosm1VRC22bl5BXrUh2GzPggJw6s"),
+              ),
+              title: const Text("Photo 2"),
+            ),
+            ListTile(
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network("https://i.kym-cdn.com/entries/icons/mobile/000/035/807/cover1.jpg"),
+              ),
+              title: const Text("Photo 3"),
+            ),
+          ],
         ),
       ),
     );
