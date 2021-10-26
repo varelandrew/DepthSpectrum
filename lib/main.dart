@@ -8,15 +8,14 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'DepthSpectrum',
+      title: 'Depth Spectrum',
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const LandingPage(title: 'DepthSpectrum Landing Demo'),
+      home: const LandingPage(title: "Depth Spectrum"),
     );
   }
 }
