@@ -15,6 +15,7 @@ class HistoryPage extends StatelessWidget {
         ),
         body: ListView(
           children: <Widget>[
+            const Padding(padding: EdgeInsets.all(5)),
             ListTile(
               leading: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
@@ -22,6 +23,7 @@ class HistoryPage extends StatelessWidget {
               ),
               title: const Text("Photo 1"),
             ),
+            const Padding(padding: EdgeInsets.all(5)),
             ListTile(
               leading: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
@@ -29,6 +31,7 @@ class HistoryPage extends StatelessWidget {
               ),
               title: const Text("Photo 2"),
             ),
+            const Padding(padding: EdgeInsets.all(5)),
             ListTile(
               leading: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
