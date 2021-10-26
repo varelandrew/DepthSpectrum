@@ -4,9 +4,7 @@ import 'package:depth_spectrum/pages/camera.dart';
 import 'package:depth_spectrum/pages/history.dart'; 
 
 class LandingPage extends StatefulWidget {
-  const LandingPage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const LandingPage({Key? key}) : super(key: key);
 
   @override
   State<LandingPage> createState() => _LandingPageState();

@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.red,
       ),
-      home: const LandingPage(title: "Depth Spectrum"),
+      home: const LandingPage(),
     );
   }
 }
