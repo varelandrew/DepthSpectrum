@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:depth_spectrum/consts.dart';
 
 const String modelViewer = '''
 <!DOCTYPE html>
@@ -74,7 +75,7 @@ class _DisplayPageState extends State<DisplayPage> {
         appBar: AppBar(
           leading: const Icon(Icons.auto_graph),
           title: const Text("Model Viewer"),
-          backgroundColor: const Color(0xFFD05353),
+          backgroundColor: DSColors.darkred,
         ),
         body: Builder(builder: (BuildContext context) {
           return WebView(

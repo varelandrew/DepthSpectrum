@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
+import 'package:depth_spectrum/consts.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({ Key? key }) : super(key: key);
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class SettingsPage extends StatelessWidget {
         appBar: AppBar(
           leading: const Icon(Icons.settings),
           title: const Text("Settings"),
-          backgroundColor: Colors.red,
+          backgroundColor: DSColors.darkred,
         ),
         body: const Center(
           child: Icon(

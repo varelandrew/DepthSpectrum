@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:depth_spectrum/consts.dart';
 
 class CameraPage extends StatefulWidget {
-  const CameraPage({ Key? key }) : super(key: key);
+  const CameraPage({Key? key}) : super(key: key);
 
   @override
   _CameraPageState createState() => _CameraPageState();
@@ -32,7 +32,9 @@ class _CameraPageState extends State<CameraPage> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.black,),
+          iconTheme: const IconThemeData(
+            color: DSColors.black,
+          ),
         ),
         drawer: Drawer(
           child: ListView(
@@ -43,7 +45,7 @@ class _CameraPageState extends State<CameraPage> {
               //   child: DrawerHeader(
               //     child: Text("Color scales"),
               //     decoration: BoxDecoration(
-              //       color: Colors.red,
+              //       color: DSColors.darkred,
               //     ),
               //   ),
               // ),
@@ -60,21 +62,21 @@ class _CameraPageState extends State<CameraPage> {
           child: Column(
             children: <Widget>[
               IconButton(
-                icon: const Icon(
-                  Icons.camera_alt,
-                  size: 100,
-                ),
-                onPressed: () => getImage(ImageSource.camera)
-              ),
+                  icon: const Icon(
+                    Icons.camera_alt,
+                    size: 100,
+                  ),
+                  onPressed: () => getImage(ImageSource.camera)),
               const Padding(padding: EdgeInsets.all(100)),
               IconButton(
-                icon: const Icon(
-                  Icons.photo_library,
-                  size: 100,
-                ),
-                onPressed: () => getImage(ImageSource.gallery)
-              ),
-              _image != null ? Image.file(_image!, height: 300, width: 300) : const Icon(Icons.usb_rounded)
+                  icon: const Icon(
+                    Icons.photo_library,
+                    size: 100,
+                  ),
+                  onPressed: () => getImage(ImageSource.gallery)),
+              _image != null
+                  ? Image.file(_image!, height: 300, width: 300)
+                  : const Icon(Icons.usb_rounded)
             ],
           ),
         ),
