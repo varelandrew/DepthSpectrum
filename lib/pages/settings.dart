@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:depth_spectrum/theme/colors.dart';
+import 'package:depth_spectrum/theme/theme.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -12,7 +12,14 @@ class Settings extends StatelessWidget {
         appBar: AppBar(
           leading: const Icon(Icons.settings),
           title: const Text("Settings"),
-          backgroundColor: DSColors.darkred,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.brightness_4_rounded),
+              onPressed: () {
+                currentTheme.toggleTheme();
+              }, 
+            )
+          ],
         ),
         body: const Center(
           child: Icon(

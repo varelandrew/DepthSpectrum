@@ -212,7 +212,6 @@ class _DisplayPageState extends State<DisplayPage> {
         appBar: AppBar(
           leading: const Icon(Icons.auto_graph),
           title: const Text("Model Viewer"),
-          backgroundColor: DSColors.darkred,
         ),
         body: Builder(builder: (BuildContext context) {
           return WebView(

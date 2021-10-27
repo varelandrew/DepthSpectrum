@@ -13,7 +13,6 @@ class History extends StatelessWidget {
         appBar: AppBar(
           leading: const Icon(Icons.photo_library),
           title: const Text("Photo history"),
-          backgroundColor: DSColors.darkred,
         ),
         body: ListView(
           children: <Widget>[
