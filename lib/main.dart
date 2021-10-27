@@ -12,9 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Depth Spectrum',
-      theme: ThemeData(
-        primaryColor: Colors.red,
-      ),
+      theme: ThemeData(primaryColor: Colors.red),
       home: const LandingPage(),
     );
   }
