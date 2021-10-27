@@ -43,8 +43,10 @@ class HistoryPage extends StatelessWidget {
                 ),
                 title: const Text("Photo 3"),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => DisplayPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DisplayPage()));
                 }),
           ],
         ),
