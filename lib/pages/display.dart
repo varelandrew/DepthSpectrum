@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:depth_spectrum/consts.dart';
+import 'package:depth_spectrum/theme/colors.dart';
 
 const String modelViewer = '''
 <!DOCTYPE html>

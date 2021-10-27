@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:depth_spectrum/pages/landing.dart';
-import 'package:depth_spectrum/consts.dart';
+import 'package:depth_spectrum/theme/theme.dart';
+import 'package:camera/camera.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure plugin initialized
+  final cameras = await availableCameras();  // Get available device cameras
+  final firstCamera = cameras.first;         // Obtain specific camera
+
+  runApp(MyApp(camera: firstCamera));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final CameraDescription camera;
+
+  const MyApp({
+    Key? key,
+    required this.camera
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Depth Spectrum',
-      theme: ThemeData(primaryColor: DSColors.darkred),
-      home: const LandingPage(),
+      theme: dsTheme(),
+      home: LandingPage(camera: camera), // Send camera to landing
     );
   }
 }
