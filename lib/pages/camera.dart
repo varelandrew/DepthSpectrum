@@ -40,20 +40,28 @@ class _CameraPageState extends State<CameraPage> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: const <Widget>[
-              // SizedBox(
-              //   height: 50,
-              //   child: DrawerHeader(
-              //     child: Text("Color scales"),
-              //     decoration: BoxDecoration(
-              //       color: DSColors.darkred,
-              //     ),
-              //   ),
-              // ),
-              ListTile(
-                title: Text("Scale 1"),
+              SizedBox(
+                height: 70,
+                child: DrawerHeader(
+                  child: Text("Color scales"),
+                  decoration: BoxDecoration(
+                    color: DSColors.darkred,
+                  ),
+                ),
               ),
               ListTile(
+                leading: Image(
+                    image: NetworkImage(
+                        "https://media.discordapp.net/attachments/676149764764598300/902796804062580746/alexbanner.png")),
+                title: Text("Scale 1"),
+                subtitle: Text("Protanopia"),
+              ),
+              ListTile(
+                leading: Image(
+                    image: NetworkImage(
+                        "https://cdn.discordapp.com/attachments/676149764764598300/902795432772648990/babylaugh.png")),
                 title: Text("Scale 2"),
+                subtitle: Text("Deuteranopia"),
               ),
             ],
           ),
