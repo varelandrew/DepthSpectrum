@@ -27,7 +27,7 @@ class _CameraState extends State<Camera>{
     _initializeControllerFuture = _controller.initialize();
   }
 
-  // Avoid exception: setState() called after dispose
+  // Avoid exception: setState() called after dispose()
   @override
   void setState(fn) {
     if(mounted) {

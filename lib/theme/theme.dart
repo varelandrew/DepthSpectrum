@@ -28,6 +28,7 @@ class DSTheme with ChangeNotifier {
       ),
     );
   }
+  
   static ThemeData get darkTheme {
     return ThemeData(
       primaryColor: DSColors.darkred,

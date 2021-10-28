@@ -12,20 +12,31 @@ class Settings extends StatelessWidget {
         appBar: AppBar(
           leading: const Icon(Icons.settings),
           title: const Text("Settings"),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.brightness_4_rounded),
-              onPressed: () {
-                currentTheme.toggleTheme();
-              }, 
-            )
-          ],
+          // actions: [
+          //   IconButton(
+          //     icon: const Icon(Icons.brightness_4_rounded),
+          //     onPressed: () {
+          //       currentTheme.toggleTheme();
+          //     }, 
+          //   )
+          // ],
         ),
-        body: const Center(
-          child: Icon(
-            Icons.settings,
-            size: 100,
-          ),
+        body: ListView(
+          children: [
+            ListTile(
+              leading: IconButton(
+                icon: const Icon(Icons.brightness_4_rounded),
+                onPressed: () {
+                  currentTheme.toggleTheme();
+                }, 
+              ),
+              title: const Text('Theme')
+            ),
+            const ListTile(
+              leading: Icon(Icons.info),
+              title: Text('About us')
+            ),
+          ],
         ),
       ),
     );
