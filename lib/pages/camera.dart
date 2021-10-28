@@ -121,10 +121,7 @@ class _CameraState extends State<Camera>{
 class DisplayImage extends StatelessWidget {
   final String imagePath;
 
-  const DisplayImage({ 
-    Key? key,
-    required this.imagePath
-  }) : super(key: key);
+  const DisplayImage({Key? key, required this.imagePath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

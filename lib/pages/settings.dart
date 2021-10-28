@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:depth_spectrum/theme/theme.dart';
+import 'package:depth_spectrum/pages/about.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,29 +13,27 @@ class Settings extends StatelessWidget {
         appBar: AppBar(
           leading: const Icon(Icons.settings),
           title: const Text("Settings"),
-          // actions: [
-          //   IconButton(
-          //     icon: const Icon(Icons.brightness_4_rounded),
-          //     onPressed: () {
-          //       currentTheme.toggleTheme();
-          //     }, 
-          //   )
-          // ],
         ),
         body: ListView(
           children: [
             ListTile(
-              leading: IconButton(
-                icon: const Icon(Icons.brightness_4_rounded),
-                onPressed: () {
-                  currentTheme.toggleTheme();
-                }, 
-              ),
-              title: const Text('Theme')
+              leading: const Icon(Icons.brightness_4_rounded),
+              title: const Text('Theme'),
+              onTap: () {
+                currentTheme.toggleTheme();
+              }
             ),
-            const ListTile(
-              leading: Icon(Icons.info),
-              title: Text('About us')
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('About us'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const About()
+                  )
+                );
+              }
             ),
           ],
         ),

@@ -46,7 +46,7 @@ class History extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const DisplayPage()));
+                          builder: (context) => const Display()));
                 }),
           ],
         ),

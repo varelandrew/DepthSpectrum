@@ -189,14 +189,14 @@ const String modelViewer = '''
 
 ''';
 
-class DisplayPage extends StatefulWidget {
-  const DisplayPage({Key? key}) : super(key: key);
+class Display extends StatefulWidget {
+  const Display({Key? key}) : super(key: key);
 
   @override
-  _DisplayPageState createState() => _DisplayPageState();
+  _DisplayState createState() => _DisplayState();
 }
 
-class _DisplayPageState extends State<DisplayPage> {
+class _DisplayState extends State<Display> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
 

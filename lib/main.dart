@@ -7,7 +7,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure plugin initialized
   final cameras = await availableCameras();  // Get available device cameras
   final firstCamera = cameras.first;         // Obtain specific camera
-
+  
   runApp(DepthSpectrum(camera: firstCamera));
 }
 
@@ -16,7 +16,7 @@ class DepthSpectrum extends StatefulWidget {
 
   const DepthSpectrum({Key? key, required this.camera}) : super(key: key);
 
- @override
+  @override
   _DepthSpectrumState createState() => _DepthSpectrumState();
 }
 
