@@ -1,17 +1,27 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+
+Future<String> getStorageDirectory() async {
+  if (Platform.isAndroid) {
+    return (await getExternalStorageDirectory())!
+        .path; // OR return "/storage/emulated/0/Download";
+  } else {
+    return (await getApplicationDocumentsDirectory()).path;
+  }
+}
 
 class Camera extends StatefulWidget {
   final CameraDescription camera;
-  
+
   const Camera({Key? key, required this.camera}) : super(key: key);
 
   @override
   _CameraState createState() => _CameraState();
 }
 
-class _CameraState extends State<Camera>{
+class _CameraState extends State<Camera> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
 
@@ -30,8 +40,8 @@ class _CameraState extends State<Camera>{
   // Avoid exception: setState() called after dispose()
   @override
   void setState(fn) {
-    if(mounted) {
-      super.setState((){});
+    if (mounted) {
+      super.setState(() {});
     }
   }
 
@@ -84,34 +94,36 @@ class _CameraState extends State<Camera>{
             if (snapshot.connectionState == ConnectionState.done) {
               return CameraPreview(_controller);
             } else {
-              return const Center(
-                child: CircularProgressIndicator()
-              );
+              return const Center(child: CircularProgressIndicator());
             }
           },
         ),
         // Take a picture with onPressed callback
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton( 
-          onPressed: () async {
-            try {
-              // Ensure initialization and attempt to take picture
-              await _initializeControllerFuture;
-              final image = await _controller.takePicture();
-              // Display image if taken
-              await Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => DisplayImage(
-                    imagePath: image.path,
+        floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              try {
+                // Ensure initialization and attempt to take picture
+                await _initializeControllerFuture;
+                final XFile image = await _controller.takePicture();
+                final File imFile = File(image.path);
+
+                String imPath =
+                    (await getStorageDirectory()) + "/lastPhoto.png";
+                imFile.copy(imPath);
+                // Display image if taken
+                await Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => DisplayImage(
+                      imagePath: image.path,
+                    ),
                   ),
-                ),
-              );
-            } catch (e) {
-              print(e);
-            }
-          },
-          child: const Icon(Icons.camera_alt)
-        ),
+                );
+              } catch (e) {
+                print(e);
+              }
+            },
+            child: const Icon(Icons.camera_alt)),
       ),
     );
   }
@@ -126,8 +138,7 @@ class DisplayImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Picture display')),
-      body: Image.file(File(imagePath))
-    );
+        appBar: AppBar(title: const Text('Picture display')),
+        body: Image.file(File(imagePath)));
   }
 }
