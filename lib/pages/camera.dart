@@ -1,16 +1,7 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-
-Future<String> getStorageDirectory() async {
-  if (Platform.isAndroid) {
-    return (await getExternalStorageDirectory())!
-        .path; // OR return "/storage/emulated/0/Download";
-  } else {
-    return (await getApplicationDocumentsDirectory()).path;
-  }
-}
+import 'package:depth_spectrum/model_utils.dart';
 
 class Camera extends StatefulWidget {
   final CameraDescription camera;
@@ -106,10 +97,9 @@ class _CameraState extends State<Camera> {
                 // Ensure initialization and attempt to take picture
                 await _initializeControllerFuture;
                 final XFile image = await _controller.takePicture();
+                // Copy temporary image to files/lastPhoto.png
                 final File imFile = File(image.path);
-
-                String imPath =
-                    (await getStorageDirectory()) + "/lastPhoto.png";
+                String imPath = await getStorageDirectory() + "/lastPhoto.png";
                 imFile.copy(imPath);
                 // Display image if taken
                 await Navigator.of(context).push(
