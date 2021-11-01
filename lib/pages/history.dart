@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:depth_spectrum/pages/display.dart';
-import 'package:depth_spectrum/theme/colors.dart';
 
 class History extends StatelessWidget {
   const History({Key? key}) : super(key: key);
@@ -43,10 +42,8 @@ class History extends StatelessWidget {
                 ),
                 title: const Text("Photo 3"),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Display()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Display()));
                 }),
           ],
         ),

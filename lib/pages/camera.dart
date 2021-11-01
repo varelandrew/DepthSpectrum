@@ -93,25 +93,21 @@ class _CameraState extends State<Camera> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
             onPressed: () async {
-              try {
-                // Ensure initialization and attempt to take picture
-                await _initializeControllerFuture;
-                final XFile image = await _controller.takePicture();
-                // Copy temporary image to files/lastPhoto.png
-                final File imFile = File(image.path);
-                String imPath = await getStorageDirectory() + "/lastPhoto.png";
-                imFile.copy(imPath);
-                // Display image if taken
-                await Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => DisplayImage(
-                      imagePath: image.path,
-                    ),
+              // Ensure initialization and attempt to take picture
+              await _initializeControllerFuture;
+              final XFile image = await _controller.takePicture();
+              // Copy temporary image to files/lastPhoto.png
+              final File imFile = File(image.path);
+              String imPath = await getStorageDirectory() + "/lastPhoto.png";
+              imFile.copy(imPath);
+              // Display image if taken
+              await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => DisplayImage(
+                    imagePath: image.path,
                   ),
-                );
-              } catch (e) {
-                print(e);
-              }
+                ),
+              );
             },
             child: const Icon(Icons.camera_alt)),
       ),

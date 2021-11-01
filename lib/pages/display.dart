@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:depth_spectrum/theme/colors.dart';
 
 const String modelViewer = '''
 <!DOCTYPE html>
@@ -224,7 +223,7 @@ class _DisplayState extends State<Display> {
               _controller.complete(webViewController);
             },
             onWebResourceError: (WebResourceError webViewErr) {
-              print('Error: ${webViewErr.description}');
+              debugPrint('Error: ${webViewErr.description}');
             },
           );
         }));
