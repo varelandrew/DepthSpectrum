@@ -1,13 +1,18 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:depth_spectrum/pages/landing.dart';
 import 'package:depth_spectrum/theme/theme.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure plugin initialized
-  final cameras = await availableCameras();  // Get available device cameras
-  final firstCamera = cameras.first;         // Obtain specific camera
-  
+  final cameras = await availableCameras(); // Get available device cameras
+  final firstCamera = cameras.first; // Obtain specific camera
+  if (Platform.isAndroid) {
+    await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
+  }
+
   runApp(DepthSpectrum(camera: firstCamera));
 }
 

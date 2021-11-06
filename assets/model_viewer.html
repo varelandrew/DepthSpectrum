@@ -50,101 +50,24 @@
             // This creates a basic Babylon Scene object (non-mesh)
             var scene = new BABYLON.Scene(engine);
         
-            // This creates and positions a free camera (non-mesh)
-            var camera = new BABYLON.ArcRotateCamera("camera1", 0, Math.PI / 2, 100, new BABYLON.Vector3(0, 0, 0), scene);
-        	camera.attachControl(canvas, false);
+            var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 10, BABYLON.Vector3.Zero(), scene);
+            var light = new BABYLON.HemisphericLight("Omni0", new BABYLON.Vector3(0, 1, 0), scene);
+            var material = new BABYLON.StandardMaterial("kosh", scene);
+            //var sphere = BABYLON.Mesh.CreateSphere("Sphere", 32, 3, scene, true);
+            //var box = BABYLON.MeshBuilder.CreateBox("box", {size: 5}, scene, true);
+            var myGround = BABYLON.MeshBuilder.CreateGround("myGround", {width: 6, height: 6, subdivisions: 50, updatable: true}, scene);
+            
         
-            // This targets the camera to scene origin
-            camera.setTarget(BABYLON.Vector3.Zero());
         
-            // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-            var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+            camera.setPosition(new BABYLON.Vector3(-10, 10, 0));
+            camera.attachControl(canvas);
+            myGround.applyDisplacementMap("textures/amiga.jpg", 0, 1);
         
-            // Default intensity is 1. Let's dim the light a small amount
-            light.intensity = 0.7;
+            // Sphere material
+            material.diffuseTexture = new BABYLON.Texture("textures/amiga.jpg", scene);
+            myGround.material = material;
+            material.wireframe = true;
         
-            var mesh = BABYLON.Mesh.CreateBox("box01", 50, scene);
-            mesh.position = new BABYLON.Vector3(0, 0, 0);
-        
-        	var brickWallDiffURL = "http://i.imgur.com/Rkh1uFK.png";
-        	var brickWallNHURL = "http://i.imgur.com/GtIUsWW.png";
-        	var stoneDiffURL = "http://i.imgur.com/VSbN3Fc.png";
-        	var stoneNHURL = "http://i.imgur.com/zVGaZNi.png";
-        
-            var stoneDiffuseTexture = new BABYLON.Texture(stoneDiffURL, scene);
-            var stoneNormalsHeightTexture = new BABYLON.Texture(stoneNHURL, scene);
-            var wallDiffuseTexture = new BABYLON.Texture(brickWallDiffURL, scene);
-            var wallNormalsHeightTexture = new BABYLON.Texture(brickWallNHURL, scene);
-        	var normalsHeightTexture = stoneNormalsHeightTexture;
-        
-            var material = new BABYLON.StandardMaterial("mtl01", scene);
-            material.diffuseTexture = stoneDiffuseTexture;
-            material.bumpTexture = stoneNormalsHeightTexture;
-            material.useParallax = true;
-            material.useParallaxOcclusion = true;
-            material.parallaxScaleBias = 0.1;
-            material.specularPower = 1000.0;
-        	material.specularColor = new BABYLON.Color3(0.5, 0.5, 0.5);
-            mesh.material = material;
-        
-        	var configObject = {
-        		scaleBias: 0.1,
-        		renderMode: "Parallax Occlusion",
-        		texture: "Stone"
-        	}
-        	
-        	var oldgui = document.querySelector("#datGUI");
-        	if (oldgui != null)
-        	{
-        		oldgui.remove();
-        	}
-        	
-        	var gui = new dat.GUI();	
-        	gui.domElement.style.marginTop = "50px";
-        	gui.domElement.id = "datGUI";
-        	
-        	gui.add(configObject, 'scaleBias', 0.01, 0.2).onChange(function(value) {
-        		material.parallaxScaleBias = value;
-        	});
-        	
-        	gui.add(configObject, 'renderMode', ['Parallax Occlusion', 'Parallax', 'Bump', "Flat"])
-        		.onChange(function (value) {
-        			switch (value) {
-        	            case "Flat":
-        	                material.bumpTexture = null;
-        	                break;
-        	            case "Bump":
-        	                material.bumpTexture = normalsHeightTexture;
-        	                material.useParallax = false;
-        	                break;
-        	            case "Parallax":
-        	                material.bumpTexture = normalsHeightTexture;
-        	                material.useParallax = true;
-        	                material.useParallaxOcclusion = false;
-        	                break;
-        	            case "Parallax Occlusion":
-        	                material.bumpTexture = normalsHeightTexture;
-        	                material.useParallax = true;
-        	                material.useParallaxOcclusion = true;
-        	                break;
-        			}
-        	});
-        
-        	gui.add(configObject, 'texture', ["stone", "wall"])
-        		.onChange(function (value) {
-        			switch (value) {
-        				case "stone":
-        					material.diffuseTexture = stoneDiffuseTexture;
-        					normalsHeightTexture = stoneNormalsHeightTexture;
-        					break;
-        				case "wall":
-        					material.diffuseTexture = wallDiffuseTexture;
-        					normalsHeightTexture = wallNormalsHeightTexture;
-        					break;
-        			}
-        			material.bumpTexture = normalsHeightTexture;
-        	});
-        	
             return scene;
         
         };
