@@ -7,10 +7,10 @@ class About extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("About Depth Spectrum")),
-      body: Column (
-        children: const [
-          Padding(padding: EdgeInsets.all(10)),
-          Center(
+      body: ListView(
+        children: [
+          const Padding(padding: EdgeInsets.all(10)),
+          const Center(
             child: Text(
               "We are Depth Spectrum!",
               style: TextStyle(
@@ -19,7 +19,79 @@ class About extends StatelessWidget {
               ),
             ),
           ),
-          Padding(padding: EdgeInsets.all(10))
+          const Padding(padding: EdgeInsets.all(10)),
+          Row(
+            children:  [
+              const Padding(padding: EdgeInsets.all(10),),
+              Image.asset(
+                "lib/Images/andrew.jpg",
+                width: 150.0,            
+              ),
+              const Padding(padding: EdgeInsets.all(10),),
+              const Flexible(
+                child: Text("sample")
+              )
+            ],
+          ),
+          const Padding(padding: EdgeInsets.all(10)),
+          Row(
+            children:  [
+              const Padding(padding: EdgeInsets.all(10),),
+              Image.asset(
+                "lib/Images/Justin.jpg",
+                width: 150.0,
+              ),
+              const Padding(padding: EdgeInsets.all(10),),
+              const Flexible(
+                child: Text("sample")
+              )
+            ],
+          ),
+           const Padding(padding: EdgeInsets.all(10)),
+          Row(
+            children:  [
+              const Padding(padding: EdgeInsets.all(10),),
+              Image.asset(
+                "lib/Images/andrew.jpg",
+                width: 150.0,
+            
+              ),
+              const Padding(padding: EdgeInsets.all(10),),
+              const Flexible(
+                child: Text("sample")
+              )
+            ],
+          ),
+           const Padding(padding: EdgeInsets.all(10)),
+          Row(
+            children:  [
+              const Padding(padding: EdgeInsets.all(10),),
+              Image.asset(
+                "lib/Images/andrew.jpg",
+                width: 150.0,
+            
+              ),
+              const Padding(padding: EdgeInsets.all(10),),
+              const Flexible(
+                child: Text("sample")
+              )
+            ],
+          ),
+           const Padding(padding: EdgeInsets.all(10)),
+          Row(
+            children:  [
+              const Padding(padding: EdgeInsets.all(10),),
+              Image.asset(
+                "lib/Images/andrew.jpg",
+                width: 150.0,
+            
+              ),
+              const Padding(padding: EdgeInsets.all(10),),
+              const Flexible(
+                child: Text("sample")
+              )
+            ],
+          ),
         ],
       ),
     );
