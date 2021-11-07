@@ -4,16 +4,16 @@ import 'package:depth_spectrum/pages/settings.dart';
 import 'package:depth_spectrum/pages/camera.dart';
 import 'package:depth_spectrum/pages/history.dart';
 
-class LandingPage extends StatefulWidget {
+class Landing extends StatefulWidget {
   final CameraDescription camera;
   
-  const LandingPage({Key? key, required this.camera}) : super(key: key);
+  const Landing({Key? key, required this.camera}) : super(key: key);
 
   @override
-  State<LandingPage> createState() => _LandingPageState();
+  State<Landing> createState() => _LandingState();
 }
 
-class _LandingPageState extends State<LandingPage> {
+class _LandingState extends State<Landing> {
   @override
   Widget build(BuildContext context) {
     final PageController controller = PageController(initialPage: 1);

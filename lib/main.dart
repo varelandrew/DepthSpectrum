@@ -42,7 +42,7 @@ class _DepthSpectrumState extends State<DepthSpectrum> {
       theme: DSTheme.lightTheme,
       darkTheme: DSTheme.darkTheme,
       themeMode: currentTheme.currentTheme,
-      home: LandingPage(camera: widget.camera), // Send camera to landing
+      home: Landing(camera: widget.camera), // Send camera to landing
     );
   }
 }
