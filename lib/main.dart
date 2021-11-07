@@ -1,9 +1,7 @@
 import 'dart:io';
-import 'package:depth_spectrum/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:depth_spectrum/pages/landing.dart';
-import 'package:depth_spectrum/theme/theme.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 Future<void> main() async {
@@ -27,13 +25,13 @@ class DepthSpectrum extends StatefulWidget {
 }
 
 class _DepthSpectrumState extends State<DepthSpectrum> {
-  @override
-  void initState() {
-    super.initState();
-    currentTheme.addListener(() {
-      setState(() {});
-    });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   currentTheme.addListener(() {
+  //     setState(() {});
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

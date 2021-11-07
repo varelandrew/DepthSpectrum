@@ -27,13 +27,10 @@ class About extends StatelessWidget {
           Row(
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
-              Image.asset(
-                "assets/images/andrew.jpg",
-                width: 150.0,            
-              ),
+              Image.asset("assets/images/andrew.jpg", width: 150.0),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
-                child: Text("Andrew Varela")
+                child: Text("Andrew Varela | Project leader")
               )
             ],
           ),
@@ -41,27 +38,21 @@ class About extends StatelessWidget {
           Row(
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
-              Image.asset(
-                "assets/images/justin.jpg",
-                width: 150.0,
-              ),
+              Image.asset("assets/images/justin.jpg", width: 150.0, ),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
-                child: Text("Justin Thoreson\nSenior CS student @ SU\n\ngithub.com/thoresonjd\nlinkedin.com/justinthoreson")),
+                child: Text("Justin Thoreson\nFullstack, Camera, UX/UI\n\nlinkedin.com/justinthoreson\ngithub.com/thoresonjd")
+              ),
             ],
           ),
           const Padding(padding: EdgeInsets.all(10)),
           Row(
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
-              Image.asset(
-                "assets/images/andrew.jpg",
-                width: 150.0,
-            
-              ),
+              Image.asset("assets/images/andrew.jpg", width: 150.0),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
-                child: Text("sample")
+                child: Text("Devon McKee\nBackend, Model Processing")
               )
             ],
           ),
@@ -69,29 +60,21 @@ class About extends StatelessWidget {
           Row(
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
-              Image.asset(
-                "assets/images/andrew.jpg",
-                width: 150.0,
-            
-              ),
+              Image.asset("assets/images/andrew.jpg", width: 150.0),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
-                child: Text("sample")
+                child: Text("Ryan Rao\nFrontend, UI")
               )
             ],
           ),
-           const Padding(padding: EdgeInsets.all(10)),
+          const Padding(padding: EdgeInsets.all(10)),
           Row(
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
-              Image.asset(
-                "assets/images/andrew.jpg",
-                width: 150.0,
-            
-              ),
+              Image.asset("assets/images/andrew.jpg", width: 150.0),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
-                child: Text("sample")
+                child: Text("Ryan Thomas")
               )
             ],
           ),

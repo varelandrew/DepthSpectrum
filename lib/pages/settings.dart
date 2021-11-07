@@ -1,6 +1,5 @@
 import 'package:depth_spectrum/theme/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:depth_spectrum/theme/theme.dart';
 import 'package:depth_spectrum/pages/about.dart';
 
 class Settings extends StatefulWidget {
