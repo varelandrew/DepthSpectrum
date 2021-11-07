@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:depth_spectrum/model_utils.dart';
+import 'package:depth_spectrum/theme/colors.dart';
 
 class Camera extends StatefulWidget {
   final CameraDescription camera;
@@ -48,7 +49,7 @@ class _CameraState extends State<Camera> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        //backgroundColor: DSColors.black,
+        backgroundColor: DSColors.black,
         appBar: AppBar(backgroundColor: Colors.transparent),
         drawer: Drawer(
           child: ListView(
@@ -58,7 +59,7 @@ class _CameraState extends State<Camera> {
                 height: 70,
                 child: DrawerHeader(
                   child: Text("Color scales"),
-                  //decoration: BoxDecoration(color: DSColors.darkred),
+                  decoration: BoxDecoration(color: DSColors.darkred),
                 ),
               ),
               ListTile(
@@ -92,24 +93,25 @@ class _CameraState extends State<Camera> {
         // Take a picture with onPressed callback
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
-            onPressed: () async {
-              // Ensure initialization and attempt to take picture
-              await _initializeControllerFuture;
-              final XFile image = await _controller.takePicture();
-              // Copy temporary image to files/lastPhoto.png
-              final File imFile = File(image.path);
-              String imPath = await getStorageDirectory() + "/lastPhoto.png";
-              imFile.copy(imPath);
-              // Display image if taken
-              await Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => DisplayImage(
-                    imagePath: image.path,
-                  ),
+          backgroundColor: DSColors.red,
+          onPressed: () async {
+            // Ensure initialization and attempt to take picture
+            await _initializeControllerFuture;
+            final XFile image = await _controller.takePicture();
+            // Copy temporary image to files/lastPhoto.png
+            final File imFile = File(image.path);
+            String imPath = await getStorageDirectory() + "/lastPhoto.png";
+            imFile.copy(imPath);
+            // Display image if taken
+            await Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => DisplayImage(
+                  imagePath: image.path,
                 ),
-              );
-            },
-            child: const Icon(Icons.camera_alt)),
+              ),
+            );
+          },
+          child: const Icon(Icons.camera_alt)),
       ),
     );
   }
@@ -124,7 +126,11 @@ class DisplayImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Picture display')),
-        body: Image.file(File(imagePath)));
+      appBar: AppBar(
+        backgroundColor: DSColors.red,
+        title: const Text('Picture display')
+      ),
+      body: Image.file(File(imagePath))
+    );
   }
 }

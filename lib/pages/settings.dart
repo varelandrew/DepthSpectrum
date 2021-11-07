@@ -1,3 +1,4 @@
+import 'package:depth_spectrum/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:depth_spectrum/theme/theme.dart';
 import 'package:depth_spectrum/pages/about.dart';
@@ -18,16 +19,17 @@ class _SettingsState extends State<Settings> {
         appBar: AppBar(
           leading: const Icon(Icons.settings),
           title: const Text("Settings"),
+          backgroundColor: DSColors.red
         ),
         body: ListView(
           children: [
-            ListTile(
-              leading: const Icon(Icons.brightness_4_rounded),
-              title: const Text('Theme'),
-              onTap: () {
-                currentTheme.toggleTheme();
-              }
-            ),
+            // ListTile(
+            //   leading: const Icon(Icons.brightness_4_rounded),
+            //   title: const Text('Theme'),
+            //   onTap: () {
+            //     currentTheme.toggleTheme();
+            //   }
+            // ),
             ListTile(
               leading: const Icon(Icons.info),
               title: const Text('About us'),

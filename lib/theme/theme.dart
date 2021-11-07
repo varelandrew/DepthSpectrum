@@ -5,7 +5,7 @@ import 'package:depth_spectrum/theme/colors.dart';
 DSTheme currentTheme = DSTheme();
 
 class DSTheme with ChangeNotifier {
-  static bool _isDark = false;
+  static bool _isDark = true;
   ThemeMode get currentTheme => _isDark ? ThemeMode.dark : ThemeMode.light;
 
   void toggleTheme() {

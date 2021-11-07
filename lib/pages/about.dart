@@ -1,3 +1,4 @@
+import 'package:depth_spectrum/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class About extends StatelessWidget {
@@ -6,7 +7,10 @@ class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("About Depth Spectrum")),
+      appBar: AppBar(
+        title: const Text("About Depth Spectrum"),
+        backgroundColor: DSColors.red,
+      ),
       body: ListView(
         children: [
           const Padding(padding: EdgeInsets.all(10)),
@@ -43,8 +47,7 @@ class About extends StatelessWidget {
               ),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
-                child: Text("Justin Thoreson")
-              )
+                child: Text("Justin Thoreson\nSenior CS student @ SU\n\ngithub.com/thoresonjd\nlinkedin.com/justinthoreson")),
             ],
           ),
           const Padding(padding: EdgeInsets.all(10)),

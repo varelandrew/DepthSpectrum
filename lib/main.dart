@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:depth_spectrum/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:depth_spectrum/pages/landing.dart';
@@ -39,9 +40,9 @@ class _DepthSpectrumState extends State<DepthSpectrum> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Depth Spectrum',
-      theme: DSTheme.lightTheme,
-      darkTheme: DSTheme.darkTheme,
-      themeMode: currentTheme.currentTheme,
+      // theme: DSTheme.lightTheme,
+      // darkTheme: DSTheme.darkTheme,
+      // themeMode: currentTheme.currentTheme,
       home: Landing(camera: widget.camera), // Send camera to landing
     );
   }
