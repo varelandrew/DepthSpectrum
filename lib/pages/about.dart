@@ -24,8 +24,37 @@ class About extends StatelessWidget {
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
               Image.asset(
-                "lib/Images/andrew.jpg",
+                "assets/images/andrew.jpg",
                 width: 150.0,            
+              ),
+              const Padding(padding: EdgeInsets.all(10),),
+              const Flexible(
+                child: Text("Andrew Varela")
+              )
+            ],
+          ),
+          const Padding(padding: EdgeInsets.all(10)),
+          Row(
+            children:  [
+              const Padding(padding: EdgeInsets.all(10),),
+              Image.asset(
+                "assets/images/justin.jpg",
+                width: 150.0,
+              ),
+              const Padding(padding: EdgeInsets.all(10),),
+              const Flexible(
+                child: Text("Justin Thoreson")
+              )
+            ],
+          ),
+          const Padding(padding: EdgeInsets.all(10)),
+          Row(
+            children:  [
+              const Padding(padding: EdgeInsets.all(10),),
+              Image.asset(
+                "assets/images/andrew.jpg",
+                width: 150.0,
+            
               ),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
@@ -38,21 +67,7 @@ class About extends StatelessWidget {
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
               Image.asset(
-                "lib/Images/Justin.jpg",
-                width: 150.0,
-              ),
-              const Padding(padding: EdgeInsets.all(10),),
-              const Flexible(
-                child: Text("sample")
-              )
-            ],
-          ),
-           const Padding(padding: EdgeInsets.all(10)),
-          Row(
-            children:  [
-              const Padding(padding: EdgeInsets.all(10),),
-              Image.asset(
-                "lib/Images/andrew.jpg",
+                "assets/images/andrew.jpg",
                 width: 150.0,
             
               ),
@@ -67,22 +82,7 @@ class About extends StatelessWidget {
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
               Image.asset(
-                "lib/Images/andrew.jpg",
-                width: 150.0,
-            
-              ),
-              const Padding(padding: EdgeInsets.all(10),),
-              const Flexible(
-                child: Text("sample")
-              )
-            ],
-          ),
-           const Padding(padding: EdgeInsets.all(10)),
-          Row(
-            children:  [
-              const Padding(padding: EdgeInsets.all(10),),
-              Image.asset(
-                "lib/Images/andrew.jpg",
+                "assets/images/andrew.jpg",
                 width: 150.0,
             
               ),
