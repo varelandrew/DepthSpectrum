@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:depth_spectrum/pages/display.dart';
+import 'package:depth_spectrum/theme/colors.dart';
 
 class History extends StatelessWidget {
   const History({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class History extends StatelessWidget {
         appBar: AppBar(
           leading: const Icon(Icons.photo_library),
           title: const Text("Photo history"),
+          backgroundColor: DSColors.red,
         ),
         body: ListView(
           children: <Widget>[

@@ -1,3 +1,4 @@
+import 'package:depth_spectrum/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class About extends StatelessWidget {
@@ -6,7 +7,10 @@ class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("About Depth Spectrum")),
+      appBar: AppBar(
+        title: const Text("About Depth Spectrum"),
+        backgroundColor: DSColors.red,
+      ),
       body: ListView(
         children: [
           const Padding(padding: EdgeInsets.all(10)),
@@ -23,13 +27,10 @@ class About extends StatelessWidget {
           Row(
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
-              Image.asset(
-                "assets/images/andrew.jpg",
-                width: 150.0,            
-              ),
+              Image.asset("assets/images/andrew.jpg", width: 150.0),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
-                child: Text("Andrew Varela")
+                child: Text("Andrew Varela | Project leader")
               )
             ],
           ),
@@ -37,13 +38,21 @@ class About extends StatelessWidget {
           Row(
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
-              Image.asset(
-                "assets/images/justin.jpg",
-                width: 150.0,
-              ),
+              Image.asset("assets/images/justin.jpg", width: 150.0, ),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
-                child: Text("Justin Thoreson")
+                child: Text("Justin Thoreson\nFullstack, Camera, UX/UI\n\nlinkedin.com/justinthoreson\ngithub.com/thoresonjd")
+              ),
+            ],
+          ),
+          const Padding(padding: EdgeInsets.all(10)),
+          Row(
+            children:  [
+              const Padding(padding: EdgeInsets.all(10),),
+              Image.asset("assets/images/andrew.jpg", width: 150.0),
+              const Padding(padding: EdgeInsets.all(10),),
+              const Flexible(
+                child: Text("Devon McKee\nBackend, Model Processing")
               )
             ],
           ),
@@ -51,14 +60,10 @@ class About extends StatelessWidget {
           Row(
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
-              Image.asset(
-                "assets/images/andrew.jpg",
-                width: 150.0,
-            
-              ),
+              Image.asset("assets/images/andrew.jpg", width: 150.0),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
-                child: Text("sample")
+                child: Text("Ryan Rao\nFrontend, UI")
               )
             ],
           ),
@@ -66,29 +71,10 @@ class About extends StatelessWidget {
           Row(
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
-              Image.asset(
-                "assets/images/andrew.jpg",
-                width: 150.0,
-            
-              ),
+              Image.asset("assets/images/andrew.jpg", width: 150.0),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
-                child: Text("sample")
-              )
-            ],
-          ),
-           const Padding(padding: EdgeInsets.all(10)),
-          Row(
-            children:  [
-              const Padding(padding: EdgeInsets.all(10),),
-              Image.asset(
-                "assets/images/andrew.jpg",
-                width: 150.0,
-            
-              ),
-              const Padding(padding: EdgeInsets.all(10),),
-              const Flexible(
-                child: Text("sample")
+                child: Text("Ryan Thomas")
               )
             ],
           ),
