@@ -8,7 +8,7 @@ class About extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("About Depth Spectrum"),
+        title: const Text("About Us"),
         backgroundColor: DSColors.red,
       ),
       body: ListView(
@@ -23,6 +23,7 @@ class About extends StatelessWidget {
               ),
             ),
           ),
+           const Center(child: Text("2D to 3D Imaging Based on Colorblindness Type")),
           const Padding(padding: EdgeInsets.all(10)),
           Row(
             children:  [
@@ -41,7 +42,7 @@ class About extends StatelessWidget {
               Image.asset("assets/images/justin.jpg", width: 150.0, ),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
-                child: Text("Justin Thoreson\nFullstack, Camera, UX/UI\n\nlinkedin.com/justinthoreson\ngithub.com/thoresonjd")
+                child: Text("Justin Thoreson\nFullstack, Camera, UX/UI\n\nlinkedin.com/in/justinthoreson\ngithub.com/thoresonjd")
               ),
             ],
           ),
@@ -49,7 +50,7 @@ class About extends StatelessWidget {
           Row(
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
-              Image.asset("assets/images/andrew.jpg", width: 150.0),
+              Image.asset("assets/images/Devon.jpg", width: 150.0),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
                 child: Text("Devon McKee\nBackend, Model Processing")
@@ -60,7 +61,7 @@ class About extends StatelessWidget {
           Row(
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
-              Image.asset("assets/images/andrew.jpg", width: 150.0),
+              Image.asset("assets/images/RyanRao.jpg", width: 150.0),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
                 child: Text("Ryan Rao\nFrontend, UI")
@@ -71,10 +72,10 @@ class About extends StatelessWidget {
           Row(
             children:  [
               const Padding(padding: EdgeInsets.all(10),),
-              Image.asset("assets/images/andrew.jpg", width: 150.0),
+              Image.asset("assets/images/RyanThomas.jpg", width: 150.0),
               const Padding(padding: EdgeInsets.all(10),),
               const Flexible(
-                child: Text("Ryan Thomas")
+                child: Text("Ryan Thomas\nFrontend, UI\nlinkedin.com/in/ryan-thomas01")
               )
             ],
           ),
