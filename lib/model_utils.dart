@@ -7,15 +7,6 @@ import 'dart:ffi';
 import 'dart:io' show Platform, Directory;
 import 'package:path/path.dart' as path;
 
-// Gets storage directory by platform
-Future<String> getStorageDirectory() async {
-  if (Platform.isAndroid) {
-    return (await getExternalStorageDirectory())!.path;
-  } else {
-    return (await getApplicationDocumentsDirectory()).path;
-  }
-}
-
 final Matrix3 toXYZ = Matrix3(0.4124564, 0.3575761, 0.1804375, 0.2126729,
     0.7151522, 0.0721750, 0.0193339, 0.1191920, 0.9503041);
 
@@ -26,10 +17,25 @@ final double Function(double a, double b) c_pow = cPowLib
     .lookup<NativeFunction<Double Function(Double a, Double b)>>("c_pow")
     .asFunction();
 
+enum Colorblindness { protanopia, deuteranopia, tritanopia }
+
 // Should build model from image
-bool buildDepthMap(File f) {
+bool buildDepthMap(File f, Colorblindness cb) {
   final Image im = decodeImage(f.readAsBytesSync())!;
   Image depthMap = Image(im.width, im.height);
+  // Set copunctal point
+  Vector2 cp;
+  switch (cb) {
+    case Colorblindness.protanopia:
+      cp = Vector2(0.747, 0.253);
+      break;
+    case Colorblindness.deuteranopia:
+      cp = Vector2(1.080, -0.800);
+      break;
+    case Colorblindness.tritanopia:
+      cp = Vector2(0.171, 0.000);
+      break;
+  }
   // Read image pixels
   for (int x = 0; x < im.width; x++) {
     for (int y = 0; y < im.height; y++) {
@@ -52,11 +58,19 @@ bool buildDepthMap(File f) {
       // Multiply by matrix to convert sRGB' -> XYZ
       Vector3 XYZ = Vector3(toXYZ.dotRow(0, sRGBp), toXYZ.dotRow(1, sRGBp),
           toXYZ.dotRow(2, sRGBp));
-      print(XYZ);
     }
   }
   List<String> splitPath = f.path.split("/");
   splitPath.last = splitPath.last.split(".").first + ".";
   final String depthMapPath = splitPath.join("/");
   return true;
+}
+
+// Gets storage directory by platform
+Future<String> getStorageDirectory() async {
+  if (Platform.isAndroid) {
+    return (await getExternalStorageDirectory())!.path;
+  } else {
+    return (await getApplicationDocumentsDirectory()).path;
+  }
 }

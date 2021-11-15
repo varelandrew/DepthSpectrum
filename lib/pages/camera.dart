@@ -112,7 +112,7 @@ class _CameraState extends State<Camera> {
               final File imFile = File(image.path);
               String imPath = await getStorageDirectory() + "/lastPhoto.png";
               imFile.copy(imPath);
-              buildDepthMap(imFile);
+              buildDepthMap(imFile, Colorblindness.protanopia);
               // Display image if taken
               await Navigator.of(context).push(
                 MaterialPageRoute(
