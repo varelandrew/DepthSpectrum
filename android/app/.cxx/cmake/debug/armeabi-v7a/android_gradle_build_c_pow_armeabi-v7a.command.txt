@@ -1,0 +1,7 @@
+Executable : C:\Users\dmckee\AppData\Local\Android\sdk\cmake\3.10.2.4988404\bin\ninja.exe
+arguments : 
+-C
+C:\Users\dmckee\Documents\development\depth_spectrum\android\app\.cxx\cmake\debug\armeabi-v7a
+c_pow
+jvmArgs : 
+

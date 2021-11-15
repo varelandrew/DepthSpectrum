@@ -1,0 +1,43 @@
+{
+  "stringTable": {
+    "0": "C:/Users/dmckee/Documents/development/depth_spectrum/android/app/.cxx/cmake/debug/x86",
+    "1": "--target=i686-none-linux-android21 --gcc-toolchain=C:/Users/dmckee/AppData/Local/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/dmckee/AppData/Local/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dc_pow_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC"
+  },
+  "buildFiles": [
+    "C:\\Users\\dmckee\\Documents\\development\\depth_spectrum\\android\\CMakeLists.txt",
+    "C:\\Users\\dmckee\\AppData\\Local\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
+    "C:\\Users\\dmckee\\AppData\\Local\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\platforms.cmake"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\dmckee\\AppData\\Local\\Android\\sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\dmckee\\Documents\\development\\depth_spectrum\\android\\app\\.cxx\\cmake\\debug\\x86\" clean"
+  ],
+  "buildTargetsCommand": "C:\\Users\\dmckee\\AppData\\Local\\Android\\sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"C:\\Users\\dmckee\\Documents\\development\\depth_spectrum\\android\\app\\.cxx\\cmake\\debug\\x86\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "c_pow-Debug-x86": {
+      "buildCommand": "C:\\Users\\dmckee\\AppData\\Local\\Android\\sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\dmckee\\Documents\\development\\depth_spectrum\\android\\app\\.cxx\\cmake\\debug\\x86\" c_pow",
+      "buildType": "debug",
+      "toolchain": "908412571",
+      "abi": "x86",
+      "artifactName": "c_pow",
+      "files": [
+        {
+          "src": "C:\\Users\\dmckee\\Documents\\development\\depth_spectrum\\lib\\c_pow.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "C:\\Users\\dmckee\\Documents\\development\\depth_spectrum\\build\\app\\intermediates\\cmake\\debug\\obj\\x86\\libc_pow.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "908412571": {
+      "cCompilerExecutable": "C:\\Users\\dmckee\\AppData\\Local\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": []
+}
