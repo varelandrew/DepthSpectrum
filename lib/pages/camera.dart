@@ -109,15 +109,15 @@ class _CameraState extends State<Camera> {
               await _initializeControllerFuture;
               final XFile image = await _controller.takePicture();
               // Copy temporary image to files/lastPhoto.png
-              final File imFile = File(image.path);
               String imPath = await getStorageDirectory() + "/lastPhoto.png";
-              imFile.copy(imPath);
-              buildDepthMap(imFile, Colorblindness.protanopia);
+              image.saveTo(imPath);
+              final File imFile = File(imPath);
+              buildDepthMap(imFile, Colorblindness.deuteranopia);
               // Display image if taken
               await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => DisplayImage(
-                    imagePath: image.path,
+                    imagePath: imPath,
                   ),
                 ),
               );
