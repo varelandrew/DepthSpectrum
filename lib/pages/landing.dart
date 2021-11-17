@@ -6,8 +6,10 @@ import 'package:depth_spectrum/pages/history.dart';
 
 class Landing extends StatefulWidget {
   final CameraDescription camera;
-  
-  const Landing({Key? key, required this.camera}) : super(key: key);
+  final String storageDir;
+
+  const Landing({Key? key, required this.camera, required this.storageDir})
+      : super(key: key);
 
   @override
   State<Landing> createState() => _LandingState();
@@ -22,7 +24,10 @@ class _LandingState extends State<Landing> {
       controller: controller,
       children: <Widget>[
         const Settings(),
-        Camera(camera: widget.camera), // Send camera to our camera class
+        Camera(
+          camera: widget.camera,
+          storageDir: widget.storageDir,
+        ), // Send camera to our camera class
         const History(),
       ],
     );

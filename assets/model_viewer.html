@@ -6,19 +6,19 @@
         <title>Babylon.js Displacement Model Viewer</title>
 
         <!-- Babylon.js -->
-        <script src="jslibs/dat.gui.min.js"></script>
-        <script src="jslibs/ammo.js"></script>
-        <script src="jslibs/cannon.js"></script>
-        <script src="jslibs/Oimo.js"></script>
-        <script src="jslibs/earcut.min.js"></script>
-        <script src="jslibs/babylon.js"></script>
-        <script src="jslibs/babylonjs.materials.min.js"></script>
-        <script src="jslibs/babylonjs.proceduralTextures.min.js"></script>
-        <script src="jslibs/babylonjs.postProcess.min.js"></script>
-        <script src="jslibs/babylonjs.loaders.js"></script>
-        <script src="jslibs/babylonjs.serializers.min.js"></script>
-        <script src="jslibs/babylon.gui.min.js"></script>
-        <script src="jslibs/babylon.inspector.bundle.js"></script>
+        <script type='text/javascript' src="jslibs/dat.gui.min.js"></script>
+        <script type='text/javascript' src="jslibs/ammo.js"></script>
+        <script type='text/javascript' src="jslibs/cannon.js"></script>
+        <script type='text/javascript' src="jslibs/Oimo.js"></script>
+        <script type='text/javascript' src="jslibs/earcut.min.js"></script>
+        <script type='text/javascript' src="jslibs/babylon.js"></script>
+        <script type='text/javascript' src="jslibs/babylonjs.materials.min.js"></script>
+        <script type='text/javascript' src="jslibs/babylonjs.proceduralTextures.min.js"></script>
+        <script type='text/javascript' src="jslibs/babylonjs.postProcess.min.js"></script>
+        <script type='text/javascript' src="jslibs/babylonjs.loaders.js"></script>
+        <script type='text/javascript' src="jslibs/babylonjs.serializers.min.js"></script>
+        <script type='text/javascript' src="jslibs/babylon.gui.min.js"></script>
+        <script type='text/javascript' src="jslibs/babylon.inspector.bundle.js"></script>
 
         <style>
             html, body {
@@ -59,7 +59,7 @@
             camera.attachControl(canvas);
             
             if (dispMap == null) {
-                myGround.applyDisplacementMap("textures/amiga.jpg", 0, 1);
+                myGround.applyDisplacementMap("textures/depth.jpg", 0, 1);
             } else {
                 var data = BABYLON.Tools.DecodeBase64(dispMap);
                 myGround.applyDisplacementMapFromBuffer(data, width, height, 0, 1);
@@ -67,7 +67,7 @@
         
             // Sphere material
             if (texMap == null) {
-                material.diffuseTexture = new BABYLON.Texture("textures/amiga.jpg", scene);
+                material.diffuseTexture = new BABYLON.Texture("textures/texture.jpg", scene);
             } else {
                 material.diffuseTexture = new BABYLON.Texture.CreateFromBase64String(texMap, "texMap", scene);
             }
@@ -102,6 +102,15 @@
         window.addEventListener("resize", function () {
             engine.resize();
         });
+
+        var reloadScene = function(texMap, dispMap, width, height) {
+            sceneToRender = createScene(texMap, dispMap, width, height);
+            engine.runRenderLoop(function () {
+                if (sceneToRender && sceneToRender.activeCamera) {
+                    sceneToRender.render();
+                }
+            });
+        };
     </script>
 </body>
 </html>

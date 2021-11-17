@@ -37,16 +37,17 @@ class History extends StatelessWidget {
             ),
             const Padding(padding: EdgeInsets.all(5)),
             ListTile(
-                leading: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
-                      "https://i.kym-cdn.com/entries/icons/mobile/000/035/807/cover1.jpg"),
-                ),
-                title: const Text("Photo 3"),
-                onTap: () {
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                    "https://i.kym-cdn.com/entries/icons/mobile/000/035/807/cover1.jpg"),
+              ),
+              title: const Text("Photo 3"),
+              /*onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const Display()));
-                }),
+              }, */
+            ),
           ],
         ),
       ),

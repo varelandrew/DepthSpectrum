@@ -3,11 +3,14 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:depth_spectrum/model_utils.dart';
 import 'package:depth_spectrum/theme/colors.dart';
+import 'package:depth_spectrum/pages/display.dart';
 
 class Camera extends StatefulWidget {
   final CameraDescription camera;
+  final String storageDir;
 
-  const Camera({Key? key, required this.camera}) : super(key: key);
+  const Camera({Key? key, required this.camera, required this.storageDir})
+      : super(key: key);
 
   @override
   _CameraState createState() => _CameraState();
@@ -108,18 +111,14 @@ class _CameraState extends State<Camera> {
               // Ensure initialization and attempt to take picture
               await _initializeControllerFuture;
               final XFile image = await _controller.takePicture();
-              // Copy temporary image to files/lastPhoto.png
-              String imPath = await getStorageDirectory() + "/lastPhoto.png";
+              // Copy temporary image to files/lastPhoto.jpg
+              String imPath = widget.storageDir + "/lastPhoto.jpg";
               image.saveTo(imPath);
               final File imFile = File(imPath);
               buildDepthMap(imFile, Colorblindness.deuteranopia);
               // Display image if taken
               await Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => DisplayImage(
-                    imagePath: imPath,
-                  ),
-                ),
+                MaterialPageRoute(builder: (context) => const Display()),
               );
             },
             child: const Icon(Icons.camera_alt)),
@@ -137,23 +136,21 @@ class DisplayImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: DSColors.black,
-      appBar: AppBar(
-        backgroundColor: DSColors.red,
-        title: const Text('Picture display'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.save_alt),
-            onPressed: () {},
-          )
-        ],
-      ),
-      body: Image.file(File(imagePath),
-        alignment: Alignment.topCenter,
-        fit: BoxFit.contain,
-        height: double.infinity,
-        width: double.infinity
-      )
-    );
+        backgroundColor: DSColors.black,
+        appBar: AppBar(
+          backgroundColor: DSColors.red,
+          title: const Text('Picture display'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.save_alt),
+              onPressed: () {},
+            )
+          ],
+        ),
+        body: Image.file(File(imagePath),
+            alignment: Alignment.topCenter,
+            fit: BoxFit.fill,
+            height: double.infinity,
+            width: double.infinity));
   }
 }

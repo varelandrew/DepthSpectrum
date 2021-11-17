@@ -66,9 +66,9 @@ double findIntersectionDepth(Vector2 origin, Vector2 director) {
 }
 
 // Should build model from image
-bool buildDepthMap(File f, Colorblindness cb) {
+void buildDepthMap(File f, Colorblindness cb) {
   final Image? im = decodeImage(f.readAsBytesSync());
-  if (im == null) return false;
+  if (im == null) return null;
   Image depthMap = Image(im.width, im.height);
   // Set copunctal point
   Vector2 cp;
@@ -105,10 +105,9 @@ bool buildDepthMap(File f, Colorblindness cb) {
     }
   }
   List<String> splitPath = f.path.split("/");
-  splitPath.last = splitPath.last.split(".").first + "-depth.png";
+  splitPath.last = splitPath.last.split(".").first + "-depth.jpg";
   final String depthMapPath = splitPath.join("/");
-  File(depthMapPath).writeAsBytesSync(encodePng(depthMap));
-  return true;
+  File(depthMapPath).writeAsBytesSync(encodeJpg(depthMap));
 }
 
 // Gets storage directory by platform
@@ -117,6 +116,18 @@ Future<String> getStorageDirectory() async {
     return (await getExternalStorageDirectory())!.path;
   } else {
     return (await getApplicationDocumentsDirectory()).path;
+  }
+}
+
+String? getStorageDirectorySync() {
+  if (Platform.isAndroid) {
+    getExternalStorageDirectory().then((dir) {
+      return dir!.path;
+    });
+  } else {
+    getApplicationDocumentsDirectory().then((dir) {
+      return dir.path;
+    });
   }
 }
 
