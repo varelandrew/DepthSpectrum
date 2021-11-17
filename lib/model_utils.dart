@@ -1,8 +1,8 @@
 import 'dart:io';
+import 'dart:ffi';
 import 'package:image/image.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:vector_math/vector_math.dart';
-import 'dart:ffi';
 
 final Matrix3 toXYZ = Matrix3(0.4124564, 0.3575761, 0.1804375, 0.2126729,
     0.7151522, 0.0721750, 0.0193339, 0.1191920, 0.9503041);
@@ -32,9 +32,45 @@ bool insidesRGB(Vector2 xy) {
   return true;
 }
 
+Vector3 linearizesRGB(Vector3 rgb) {
+  return Vector3(
+    rgb.x <= 0.04045 ? rgb.x / 12.92 : c_pow((rgb.x + 0.055) / 1.055, 2.4),
+    rgb.y <= 0.04045 ? rgb.y / 12.92 : c_pow((rgb.y + 0.055) / 1.055, 2.4),
+    rgb.z <= 0.04045 ? rgb.z / 12.92 : c_pow((rgb.z + 0.055) / 1.055, 2.4),
+  );
+}
+
+double findIntersectionDepth(Vector2 origin, Vector2 director) {
+  // ray won't intersect with 2d sRGB triangle on edge, so quads
+  final Quad face1 = Quad.points(Vector3(0.64, 0.33, -1),
+      Vector3(0.64, 0.33, 1), Vector3(0.3, 0.6, 1), Vector3(0.3, 0.6, -1));
+  final Quad face2 = Quad.points(Vector3(0.3, 0.6, -1), Vector3(0.3, 0.6, 1),
+      Vector3(0.15, 0.06, 1), Vector3(0.15, 0.06, -1));
+  final Quad face3 = Quad.points(Vector3(0.15, 0.06, -1),
+      Vector3(0.15, 0.06, 1), Vector3(0.64, 0.33, 1), Vector3(0.64, 0.33, -1));
+  Ray ray = Ray.originDirection(Vector3(origin.x, origin.y, 0),
+      Vector3(director.x - origin.x, director.y - origin.y, 0));
+  // Check intersection distances
+  final double? intersectDist1 = ray.intersectsWithQuad(face1);
+  final double? intersectDist2 = ray.intersectsWithQuad(face2);
+  final double? intersectDist3 = ray.intersectsWithQuad(face3);
+  List<double> l = [];
+  if (intersectDist1 != null) l.add(intersectDist1);
+  if (intersectDist2 != null) l.add(intersectDist2);
+  if (intersectDist3 != null) l.add(intersectDist3);
+  if (l.length == 0) {
+    return -1;
+  }
+  final double min = l.reduce((c, n) => c < n ? c : n);
+  final double max = l.reduce((c, n) => c > n ? c : n);
+  final double mid = ray.at(min).distanceTo(Vector3(director.x, director.y, 0));
+  return mid / (max - min);
+}
+
 // Should build model from image
 bool buildDepthMap(File f, Colorblindness cb) {
-  final Image im = decodeImage(f.readAsBytesSync())!;
+  final Image? im = decodeImage(f.readAsBytesSync());
+  if (im == null) return false;
   Image depthMap = Image(im.width, im.height);
   // Set copunctal point
   Vector2 cp;
@@ -57,34 +93,23 @@ bool buildDepthMap(File f, Colorblindness cb) {
       final Vector3 sRGB = Vector3(
           (p & 0xff) / 255, (p >> 8 & 0xff) / 255, (p >> 16 & 0xff) / 255);
       // Linearize sRGB values to sRGB'
-      final Vector3 sRGBp = Vector3(
-        (sRGB.x <= 0.04045)
-            ? sRGB.x / 12.92
-            : c_pow((sRGB.x + 0.055) / 1.055, 2.4),
-        (sRGB.y <= 0.04045)
-            ? sRGB.y / 12.92
-            : c_pow((sRGB.y + 0.055) / 1.055, 2.4),
-        (sRGB.z <= 0.04045)
-            ? sRGB.z / 12.92
-            : c_pow((sRGB.z + 0.055) / 1.055, 2.4),
-      );
+      final Vector3 sRGBp = linearizesRGB(sRGB);
       // Transform by matrix to convert sRGB' -> CIE XYZ
       final Vector3 XYZ = toXYZ.transform(sRGBp);
       // Translate XYZ into xyY space for CIE
       final double sumXYZ = XYZ.x + XYZ.y + XYZ.z;
-      Vector2 xy = Vector2(XYZ.x / sumXYZ, XYZ.y / sumXYZ);
-      if (x == im.width ~/ 2 && y == im.height ~/ 2) {
-        print(sRGB);
-        //print(cp);
-        print(xy);
-        //print(insideColorspace(cp));
-        //print(insideColorspace(xy));
-      }
+      final Vector2 xy = Vector2(XYZ.x / sumXYZ, XYZ.y / sumXYZ);
+      // Find depth from intersection with sRGB triangle
+      double depth = findIntersectionDepth(cp, xy);
+      if (depth == -1) depth = 0;
+      int intensity = (depth * 255).round();
+      depthMap.setPixelRgba(x, y, intensity, intensity, intensity);
     }
   }
   List<String> splitPath = f.path.split("/");
-  splitPath.last = splitPath.last.split(".").first + ".";
+  splitPath.last = splitPath.last.split(".").first + "-depth.png";
   final String depthMapPath = splitPath.join("/");
+  File(depthMapPath).writeAsBytesSync(encodePng(depthMap));
   return true;
 }
 
@@ -96,10 +121,6 @@ Future<String> getStorageDirectory() async {
     return (await getApplicationDocumentsDirectory()).path;
   }
 }
-
-
-
-
 
 /*
 final Matrix3 tosRGB = Matrix3(3.2404542, -1.5371385, -0.4985314, -0.9692660,
@@ -170,4 +191,5 @@ void test() {
   f.writeAsStringSync(
       "(${double.parse(outl[outl.length - 1].x.toStringAsFixed(2))}, ${double.parse(outl[outl.length - 1].y.toStringAsFixed(2))})\n",
       mode: FileMode.append);
-} */
+} 
+*/
