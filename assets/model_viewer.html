@@ -45,7 +45,7 @@
         var scene = null;
         var sceneToRender = null;
         var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}); };
-        var createScene = function () {
+        var createScene = function (texMap = null, dispMap = null, width = 0, height = 0) {
         
             // This creates a basic Babylon Scene object (non-mesh)
             var scene = new BABYLON.Scene(engine);
@@ -57,31 +57,40 @@
         
             camera.setPosition(new BABYLON.Vector3(-10, 10, 0));
             camera.attachControl(canvas);
-            myGround.applyDisplacementMap("textures/amiga.jpg", 0, 1);
+            
+            if (dispMap == null) {
+                myGround.applyDisplacementMap("textures/amiga.jpg", 0, 1);
+            } else {
+                var data = BABYLON.Tools.DecodeBase64(dispMap);
+                myGround.applyDisplacementMapFromBuffer(data, width, height, 0, 1);
+            }
         
             // Sphere material
-            material.diffuseTexture = new BABYLON.Texture("textures/amiga.jpg", scene);
+            if (texMap == null) {
+                material.diffuseTexture = new BABYLON.Texture("textures/amiga.jpg", scene);
+            } else {
+                material.diffuseTexture = new BABYLON.Texture.CreateFromBase64String(texMap, "texMap", scene);
+            }
             myGround.material = material;
         
             return scene;
         
         };
-                window.initFunction = async function() {
-                    
-                    
-                    var asyncEngineCreation = async function() {
-                        try {
-                        return createDefaultEngine();
-                        } catch(e) {
-                        console.log("the available createEngine function failed. Creating the default engine instead");
-                        return createDefaultEngine();
-                        }
-                    }
-
-                    window.engine = await asyncEngineCreation();
-        if (!engine) throw 'engine should not be null.';
-        window.scene = createScene();};
-        initFunction().then(() => {sceneToRender = scene        
+        window.initFunction = async function() {    
+            var asyncEngineCreation = async function() {
+                try {
+                    return createDefaultEngine();
+                } catch(e) {
+                    console.log("the available createEngine function failed. Creating the default engine instead");
+                    return createDefaultEngine();
+                }
+            }
+            window.engine = await asyncEngineCreation();
+            if (!engine) throw 'engine should not be null.';
+            window.scene = createScene();
+        };
+        initFunction().then(() => {
+            sceneToRender = scene;        
             engine.runRenderLoop(function () {
                 if (sceneToRender && sceneToRender.activeCamera) {
                     sceneToRender.render();
