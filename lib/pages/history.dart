@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:depth_spectrum/pages/display.dart';
 import 'package:depth_spectrum/theme/colors.dart';
 
 class History extends StatelessWidget {

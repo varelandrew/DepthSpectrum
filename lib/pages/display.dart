@@ -1,11 +1,6 @@
-import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:depth_spectrum/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:image/image.dart';
 
 class Display extends StatefulWidget {
   const Display({Key? key}) : super(key: key);

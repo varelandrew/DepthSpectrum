@@ -18,7 +18,8 @@ void createModelServer(bundle, storageDir) {
 
 void _handleGet(HttpRequest request, AssetBundle bundle, String storageDir) {
   print(request.uri.pathSegments.join("/"));
-  if (request.uri.pathSegments.length == 1) {
+  if (request.uri.pathSegments.length == 1 ||
+      request.uri.pathSegments.first != "assets") {
     _badRequest(request);
     return;
   }
@@ -29,8 +30,6 @@ void _handleGet(HttpRequest request, AssetBundle bundle, String storageDir) {
             ContentType("application", "javascript", charset: "utf-8");
         request.response.write(data);
         request.response.close();
-      }).catchError((e) {
-        print("JSLibs Error: ${e}");
       });
       break;
     case "textures":

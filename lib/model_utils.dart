@@ -4,9 +4,6 @@ import 'package:image/image.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:vector_math/vector_math.dart';
 
-final Matrix3 toXYZ = Matrix3(0.4124564, 0.3575761, 0.1804375, 0.2126729,
-    0.7151522, 0.0721750, 0.0193339, 0.1191920, 0.9503041);
-
 final DynamicLibrary cPowLib = Platform.isAndroid
     ? DynamicLibrary.open("libc_pow.so")
     : DynamicLibrary.process();
@@ -37,6 +34,14 @@ Vector3 linearizesRGB(Vector3 rgb) {
     rgb.x <= 0.04045 ? rgb.x / 12.92 : c_pow((rgb.x + 0.055) / 1.055, 2.4),
     rgb.y <= 0.04045 ? rgb.y / 12.92 : c_pow((rgb.y + 0.055) / 1.055, 2.4),
     rgb.z <= 0.04045 ? rgb.z / 12.92 : c_pow((rgb.z + 0.055) / 1.055, 2.4),
+  );
+}
+
+Vector3 sRGBptoXYZ(Vector3 rgb) {
+  return Vector3(
+    0.4124 * rgb.x + 0.3576 * rgb.y + 0.1805 * rgb.z,
+    0.2126 * rgb.x + 0.7152 * rgb.y + 0.0722 * rgb.z,
+    0.0193 * rgb.x + 0.1192 * rgb.y + 0.9505 * rgb.z,
   );
 }
 
@@ -93,7 +98,7 @@ void buildDepthMap(File f, Colorblindness cb) {
       // Linearize sRGB values to sRGB'
       final Vector3 sRGBp = linearizesRGB(sRGB);
       // Transform by matrix to convert sRGB' -> CIE XYZ
-      final Vector3 XYZ = toXYZ.transform(sRGBp);
+      final Vector3 XYZ = sRGBptoXYZ(sRGBp);
       // Translate XYZ into xyY space for CIE
       final double sumXYZ = XYZ.x + XYZ.y + XYZ.z;
       final Vector2 xy = Vector2(XYZ.x / sumXYZ, XYZ.y / sumXYZ);
