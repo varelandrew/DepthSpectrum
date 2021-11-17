@@ -137,14 +137,23 @@ class DisplayImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: DSColors.black,
-        appBar: AppBar(
-            backgroundColor: DSColors.red,
-            title: const Text('Picture display')),
-        body: Image.file(File(imagePath),
-            alignment: Alignment.topCenter,
-            fit: BoxFit.contain,
-            height: double.infinity,
-            width: double.infinity));
+      backgroundColor: DSColors.black,
+      appBar: AppBar(
+        backgroundColor: DSColors.red,
+        title: const Text('Picture display'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.save_alt),
+            onPressed: () {},
+          )
+        ],
+      ),
+      body: Image.file(File(imagePath),
+        alignment: Alignment.topCenter,
+        fit: BoxFit.contain,
+        height: double.infinity,
+        width: double.infinity
+      )
+    );
   }
 }
