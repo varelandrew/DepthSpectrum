@@ -1,3 +1,4 @@
+import 'package:depth_spectrum/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
@@ -29,10 +30,12 @@ class _DisplayState extends State<Display> {
       appBar: AppBar(
         leading: const Icon(Icons.auto_graph),
         title: const Text("Model Viewer"),
+        backgroundColor: DSColors.red,
       ),
       body: InAppWebView(
         key: webViewKey,
-        initialFile: "assets/model_viewer.html",
+        initialUrlRequest: URLRequest(
+            url: Uri.parse("http://localhost:8080/assets/model_viewer.html")),
         initialOptions: options,
         onWebViewCreated: (controller) {
           webViewController = controller;

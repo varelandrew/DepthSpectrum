@@ -4,10 +4,13 @@ import 'package:camera/camera.dart';
 import 'package:depth_spectrum/pages/landing.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
+final InAppLocalhostServer localhostServer = InAppLocalhostServer();
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure plugin initialized
   final cameras = await availableCameras(); // Get available device cameras
   final firstCamera = cameras.first; // Obtain specific camera
+  await localhostServer.start();
   if (Platform.isAndroid) {
     await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
   }

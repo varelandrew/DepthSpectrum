@@ -58,9 +58,7 @@ double findIntersectionDepth(Vector2 origin, Vector2 director) {
   if (intersectDist1 != null) l.add(intersectDist1);
   if (intersectDist2 != null) l.add(intersectDist2);
   if (intersectDist3 != null) l.add(intersectDist3);
-  if (l.length == 0) {
-    return -1;
-  }
+  if (l.isEmpty) return -1;
   final double min = l.reduce((c, n) => c < n ? c : n);
   final double max = l.reduce((c, n) => c > n ? c : n);
   final double mid = ray.at(min).distanceTo(Vector3(director.x, director.y, 0));
